@@ -7,51 +7,51 @@ using OpenQA.Selenium.Chrome;
 namespace August2022.Tests
 {
     [TestFixture]
+    [Parallelizable]
     public class TM_Tests : CommonDriver
     {
-        [SetUp]
-        public void LoginActions()
-        {
-            // open chrome browser
-            driver = new ChromeDriver();
+        HomePage homePageObj = new HomePage();
+        TMPage tmPageObj = new TMPage();
 
-            // Login page object initialization and definition
-            LoginPage loginPageObj = new LoginPage();
-            loginPageObj.LoginSteps(driver);
-
-            // Home page object initialization and definition
-            HomePage homePageObj = new HomePage();
-            homePageObj.GoToTMPage(driver);
-        }
-
-        [Test]
+        [Test, Order(1), Description("Check if user is able to create TM record with valid credentials")]
         public void CreateTMTest()
         {
+                 
+            homePageObj.GoToTMPage(driver);
+
             // TM page object initialization and definition
-            TMPage tmPageObj = new TMPage();
+        
             tmPageObj.CreateTM(driver);
+
+
         }
 
-        [Test]
+        [Test, Order(2), Description("Check if user is able to edit existing TM record")]
         public void EditTMTest()
         {
+
+            homePageObj.GoToTMPage(driver);
+
             // Edit TM
-            TMPage tmPageObj = new TMPage();
+
             tmPageObj.EditTM(driver);
         }
 
-        [Test]
+        [Test, Order(3), Description("Check if user is able to delete existing TM record")]
         public void DeleteTMTest()
         {
+
+            homePageObj.GoToTMPage(driver);
+
             // Delete TM
-            TMPage tmPageObj = new TMPage();
+
             tmPageObj.DeleteTM(driver);
         }
 
         [TearDown]
         public void CloseTestRun()
         {
-            driver.Quit();
+            //driver.Quit();
         }
 
 

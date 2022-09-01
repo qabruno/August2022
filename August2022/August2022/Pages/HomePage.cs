@@ -14,5 +14,10 @@ namespace August2022.Pages
             IWebElement tmOption = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[3]/a"));
             tmOption.Click();
         }
+
+        public void GoToEmployeePage(IWebDriver driver)
+        {
+            // Navigate to employee page
+        }
     }
 }
